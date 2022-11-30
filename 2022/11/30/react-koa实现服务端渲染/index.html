@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="dockerの小试牛刀, Lister">
+    <meta name="keywords" content="ssr">
     <meta name="description" content="随遇而安，随心而动">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>dockerの小试牛刀 | Lister</title>
+    <title>react+koa实现服务端渲染 | Lister</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,12 +308,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.ldpro.top/cover/docker.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.ldpro.top/cover/ssr.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">dockerの小试牛刀</h1>
+                    <h1 class="description center-align post-title">react+koa实现服务端渲染</h1>
                 </div>
             </div>
         </div>
@@ -430,8 +430,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/docker/">
-                                <span class="chip bg-color">docker</span>
+                            <a href="/tags/React/">
+                                <span class="chip bg-color">React</span>
+                            </a>
+                        
+                            <a href="/tags/ssr/">
+                                <span class="chip bg-color">ssr</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/">
+                                <span class="chip bg-color">服务端渲染</span>
                             </a>
                         
                     </div>
@@ -455,7 +463,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-15
+                    2022-11-30
                 </div>
                 
 
@@ -464,14 +472,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    517
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    1 分
                 </div>
                 
 
@@ -486,49 +494,22 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>docker现在作为最热门的部署技术之一，作为一个前端也是有必要学习哒!<br>enmmmmm，不过作为一个前端，加上公司也很少用docker，接触的机会实在太少了，根本没有实操机会啊喂，这两天盲人摸🐘般的搞了点皮毛，写下一点点心得：</p>
-<h3 id="什么是docker"><a href="#什么是docker" class="headerlink" title="什么是docker"></a>什么是docker</h3><p>一套开源的、可以搭建虚拟环境的应用容器引擎。特点是隔离化、容器化。</p>
-<h3 id="docker是干啥用的"><a href="#docker是干啥用的" class="headerlink" title="docker是干啥用的"></a>docker是干啥用的</h3><p>通过docker，可以把本地的运行环境移植到一个镜像中，在服务器端就可以直接用上这套环境来进行部署，省去了不同环境之间的转换和不兼容。<br>所以，从作用上来看，似乎和虚拟机有点像。</p>
-<h3 id="docker的优点"><a href="#docker的优点" class="headerlink" title="docker的优点"></a>docker的优点</h3><p>比虚拟机而言，docker启动迅速，开箱即用；内存占用少</p>
-<h3 id="docker的安装"><a href="#docker的安装" class="headerlink" title="docker的安装"></a>docker的安装</h3><p>安装方法网上一搜一大堆，我的电脑是macOS系统，可以直接用homebrew安装，或者也可以手动去官网下载安装包</p>
-<h3 id="docker的核心概念"><a href="#docker的核心概念" class="headerlink" title="docker的核心概念"></a>docker的核心概念</h3><ol>
-<li>镜像<br>镜像是docker的地基，docker官方也有专门的镜像库，提供容器运行时所需的运行环境；<br>相关命令：<br> <strong><em>列出本地镜像列表</em></strong> <code>docker images</code><br> <strong><em>获取镜像</em></strong> <code>docker pull xxx</code><br> <strong><em>查找镜像</em></strong> <code>docker search xxx</code><br> <strong><em>删除镜像</em></strong> <code>docker rmi xxx</code><br> <strong><em>更新/提交镜像</em></strong> <code>docker commit -m=? -a=? 容器id xxx</code></li>
-<li>容器<br>容器是镜像的实例，只有把镜像容器化了才可以在本地使用；<br>相关命令：(xxx代表镜像名)<br> <strong><em>查看运行中容器</em></strong> <code>docker ps</code><br> <strong><em>创建容器</em></strong> <code>docker run [OPTIONS] xxx [COMMAND] </code><br> OPTIONS说明：<br> -d 后台运行容器<br> -i 交互模式运行<br> -t 为容器分配一个伪输入终端<br> -p 指定端口映射，格式<code>主机端口:容器端口</code><br> -P 随机端口映射<br> –name 为容器指定名称<br> -v 绑定卷，一般用于数据传输<br> 上面都是常用的参数，不常用的就不列举了，可以找文档看；此外，-d,-t,-i可以合并写，比如-it,-itd<br>举例：<br>使用docker镜像nginx:latest以后台模式启动一个容器,并将容器命名为mynginx<br><code>docker run -d --name mynginx -d nginx:latest</code><br>使用镜像 nginx:latest，以后台模式启动一个容器,将容器的 80 端口映射到主机的 80 端口,主机的目录 /data 映射到容器的 /data。<br><code>docker run -d -p 80:80 -v /data:/data nginx:latest</code></li>
-</ol>
-<p>此外，容器和容器之间也可以进行互联，方法是先建立一个docker网络<br><code>docker network create -d bridge test-net</code><br>之后创建两个或多个容器，用–network test-net来加入该网络</p>
-<ol start="3">
-<li>仓库<br>仓库是集中存放镜像的地方，官方有<a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub</a></li>
-</ol>
-<p>那么身为一个前端，部署方面最先要接触的必须是nginx，接下来就以nginx的部署为例</p>
-<p>拉取nginx镜像：<br><code>docker pull nginx:latest</code></p>
-<p>运行一个nginx容器：<br><code>docker run --name nginx-test -p 80:80 -d nginx</code></p>
-<p>运行完后看本地ip能否访问,如成功应该出现’Welcome to nginx!’页面(这里我用的8081端口，因为80端口被占用了)<br><img src="https://cdn.ldpro.top/docker-nginx.jpg" width="80%"></p>
-<p>之后我们进入该容器<br><code>docker exec -it 容器id bash</code></p>
-<p>nginx容器的默认nginx存放地址为/usr/share/nginx/html/index.html，理论上我们直接把前端包放进去就ok了。<br>但是如何把本机文件拷贝到容器里呢？</p>
-<p>两种方法：</p>
-<ol>
-<li><p>通过映射：<br><code>docker run --name nginx-blog -p 80:80 -d -v /Users/lidong/Documents/blog/public:/usr/share/nginx/html nginx:latest</code><br>这里我是直接把本机的前端包映射到容器对应的nginx目录,简单粗暴。</p>
-</li>
-<li><p>进一步配置，通过dockerfile<br>Dockerfile是docker的一个统一配置文件，类似于nginx的nginx.conf，用来配置一个自定义的镜像.<br>我们在本地创建一个Dockerfile文件夹，里面有一个Dockerfile文件.<br><code>mkdir Dockerfile</code>  <code>touch Dockerfile</code><br>然后在/Dockerfile/创建web文件夹，在/Dockerfile/web/创建front文件夹，然后把前端dist拖到/Dockerfile/web/front/。</p>
-</li>
-</ol>
-<p>编辑Dockerfile:</p>
-<pre class="line-numbers language-none"><code class="language-none">FROM nginx:latest
-COPY &#x2F;web&#x2F;front&#x2F;dist &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>这两条指令的意思是我们自定义的这个镜像，基于nginx:latest，然后复制本地/web/front/dist文件到容器/usr/share/nginx/html目录</p>
-<p>关于Dockerfile的指令，可参照这篇文章：<a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-dockerfile.html">https://www.runoob.com/docker/docker-dockerfile.html</a></p>
-<p>之后进入Dockerfile文件夹，开始构建镜像:<br><code>docker build -t web-front:latest .</code> //创建一个名称标签为web-front:latest的镜像</p>
-<p>输入docker images查看镜像<br><img src="https://cdn.ldpro.top/docker-nginx2.jpg" width="80%"></p>
-<p>运行容器<br><code>docker run -itd --name web-front-1 -p 80:80 web-front bash</code></p>
-<p>进入容器<br><code>docker exec -it 容器id bash</code></p>
-<p>运行<code>/usr/sbin/nginx</code>开启nginx服务</p>
-<p>好了，可以访问了~<br><img src="https://cdn.ldpro.top/docker-nginx3.jpg" width="100%"></p>
+                <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>尽管本人目前项目中并未有需要服务端渲染的需求，但是作为一名前端开发，我有兴趣深入了解一下它，网上找了几篇文章结合起来看，再结合我比较熟悉的技术栈，发现react+koa作为前端和服务端来开始这一项目是最合适的.</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>服务端渲染即由服务端获取数据，通过html输出的方式在网页中呈现，与现在流行的客户端渲染（CSR）不同，CSR由js进行比对渲染（比如虚拟DOM），SSR交由html使浏览器直接渲染</p>
+<h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul>
+<li>加快首屏渲染</li>
+<li>利于SEO，更容易被爬虫拿到</li>
+</ul>
+<hr>
+<p><em>但是同样的，缺点就是代码量变大变复杂，以及服务器端压力变大，所以利弊得失需要视项目实际情况去定</em></p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>SSR的定义及原理很简单，但是要具体实施是有难度的，因为考虑到双端就涉及到一个概念————同构</p>
+<h5 id="什么是同构"><a href="#什么是同构" class="headerlink" title="什么是同构"></a>什么是同构</h5><p>我们的前端代码通过处理可以在服务端运行，输出的html也可以在浏览器上直接显示，但是这就是服务端渲染了吗？no！当我们添加某些交互功能，比如按钮，js事件，你会发现毫无反应！原因是服务端无法直接处理这些js事件，我们仍需要对它们进行处理，这就是同构的目的，so，我们的代码是要跑两遍的，服务端跑一遍完成html结构的渲染，客户端跑一遍完成js等事件的绑定，这就是同构。</p>
+<h5 id="代码相关"><a href="#代码相关" class="headerlink" title="代码相关"></a>代码相关</h5><p>可以参考这篇文章，我把代码clone下来后在本地跑了一遍，完全没有问题的，但是打包后的样式没有加载出来，后面有需求再研究吧。<br>链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/dKnightL/article/details/125295881">https://blog.csdn.net/dKnightL/article/details/125295881</a></p>
 <p><em>参考文章：</em></p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904022659301383#heading-9">https://juejin.cn/post/6844904022659301383#heading-9</a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903591375814669">https://juejin.cn/post/6844903591375814669</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/saneri/p/11799865.html">https://www.cnblogs.com/saneri/p/11799865.html</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-tutorial.html">https://www.runoob.com/docker/docker-tutorial.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903943902855176">https://juejin.cn/post/6844903943902855176</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/dKnightL/article/details/125295881">https://blog.csdn.net/dKnightL/article/details/125295881</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903881390964744">https://juejin.cn/post/6844903881390964744</a></li>
 </ul>
 
             </div>
@@ -555,7 +536,7 @@ COPY &#x2F;web&#x2F;front&#x2F;dist &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html<sp
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.ldpro.top/2021/10/15/docker%E3%81%AE%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80/">https://www.ldpro.top/2021/10/15/docker%E3%81%AE%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80/</a>
+                    <a href="https://www.ldpro.top/2022/11/30/react-koa%E5%AE%9E%E7%8E%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/">https://www.ldpro.top/2022/11/30/react-koa%E5%AE%9E%E7%8E%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -593,8 +574,16 @@ COPY &#x2F;web&#x2F;front&#x2F;dist &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html<sp
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/docker/">
-                                    <span class="chip bg-color">docker</span>
+                                <a href="/tags/React/">
+                                    <span class="chip bg-color">React</span>
+                                </a>
+                            
+                                <a href="/tags/ssr/">
+                                    <span class="chip bg-color">ssr</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/">
+                                    <span class="chip bg-color">服务端渲染</span>
                                 </a>
                             
                         </div>
@@ -1025,9 +1014,10 @@ COPY &#x2F;web&#x2F;front&#x2F;dist &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html<sp
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2022/11/30/react-koa%E5%AE%9E%E7%8E%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/">
                     <div class="card-image">
@@ -1044,9 +1034,9 @@ COPY &#x2F;web&#x2F;front&#x2F;dist &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html<sp
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2022-11-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-11-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1059,6 +1049,7 @@ COPY &#x2F;web&#x2F;front&#x2F;dist &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html<sp
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1085,12 +1076,12 @@ COPY &#x2F;web&#x2F;front&#x2F;dist &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html<sp
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/31/%E5%85%B3%E4%BA%8E%E9%98%B2%E6%8A%96%E3%80%81%E8%8A%82%E6%B5%81/">
+                <a href="/2021/10/15/docker%E3%81%AE%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80/">
                     <div class="card-image">
                         
-                        <img src="https://cdn.ldpro.top/cover/c5.jpg" class="responsive-img" alt="关于防抖、节流">
+                        <img src="https://cdn.ldpro.top/cover/docker.jpg" class="responsive-img" alt="dockerの小试牛刀">
                         
-                        <span class="card-title">关于防抖、节流</span>
+                        <span class="card-title">dockerの小试牛刀</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1101,7 +1092,7 @@ COPY &#x2F;web&#x2F;front&#x2F;dist &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html<sp
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-15
                             </span>
                         <span class="publish-author">
                             
@@ -1118,8 +1109,8 @@ COPY &#x2F;web&#x2F;front&#x2F;dist &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html<sp
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">
-                        <span class="chip bg-color">性能优化</span>
+                    <a href="/tags/docker/">
+                        <span class="chip bg-color">docker</span>
                     </a>
                     
                 </div>

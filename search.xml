@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>react+koa实现服务端渲染</title>
+      <link href="2022/11/30/react-koa%E5%AE%9E%E7%8E%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/"/>
+      <url>2022/11/30/react-koa%E5%AE%9E%E7%8E%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93/</url>
+      
+        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>尽管本人目前项目中并未有需要服务端渲染的需求，但是作为一名前端开发，我有兴趣深入了解一下它，网上找了几篇文章结合起来看，再结合我比较熟悉的技术栈，发现react+koa作为前端和服务端来开始这一项目是最合适的.</p><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>服务端渲染即由服务端获取数据，通过html输出的方式在网页中呈现，与现在流行的客户端渲染（CSR）不同，CSR由js进行比对渲染（比如虚拟DOM），SSR交由html使浏览器直接渲染</p><h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><ul><li>加快首屏渲染</li><li>利于SEO，更容易被爬虫拿到</li></ul><hr><p><em>但是同样的，缺点就是代码量变大变复杂，以及服务器端压力变大，所以利弊得失需要视项目实际情况去定</em></p><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>SSR的定义及原理很简单，但是要具体实施是有难度的，因为考虑到双端就涉及到一个概念————同构</p><h5 id="什么是同构"><a href="#什么是同构" class="headerlink" title="什么是同构"></a>什么是同构</h5><p>我们的前端代码通过处理可以在服务端运行，输出的html也可以在浏览器上直接显示，但是这就是服务端渲染了吗？no！当我们添加某些交互功能，比如按钮，js事件，你会发现毫无反应！原因是服务端无法直接处理这些js事件，我们仍需要对它们进行处理，这就是同构的目的，so，我们的代码是要跑两遍的，服务端跑一遍完成html结构的渲染，客户端跑一遍完成js等事件的绑定，这就是同构。</p><h5 id="代码相关"><a href="#代码相关" class="headerlink" title="代码相关"></a>代码相关</h5><p>可以参考这篇文章，我把代码clone下来后在本地跑了一遍，完全没有问题的，但是打包后的样式没有加载出来，后面有需求再研究吧。<br>链接：<a href="https://blog.csdn.net/dKnightL/article/details/125295881">https://blog.csdn.net/dKnightL/article/details/125295881</a></p><p><em>参考文章：</em></p><ul><li><a href="https://juejin.cn/post/6844903943902855176">https://juejin.cn/post/6844903943902855176</a></li><li><a href="https://blog.csdn.net/dKnightL/article/details/125295881">https://blog.csdn.net/dKnightL/article/details/125295881</a></li><li><a href="https://juejin.cn/post/6844903881390964744">https://juejin.cn/post/6844903881390964744</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 技术 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> React </tag>
+            
+            <tag> ssr </tag>
+            
+            <tag> 服务端渲染 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>dockerの小试牛刀</title>
       <link href="2021/10/15/docker%E3%81%AE%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80/"/>
       <url>2021/10/15/docker%E3%81%AE%E5%B0%8F%E8%AF%95%E7%89%9B%E5%88%80/</url>
